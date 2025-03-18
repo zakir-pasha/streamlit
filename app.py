@@ -8,15 +8,15 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 body, .stApp {
-    background-color: #f0fcf4; /* Light minty green background */
-    color: #333333; /* Dark gray text */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+    background-color: #f0fcf4;
+    color: #333333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .big-font {
     font-size: 50px !important;
     text-align: center;
     margin-top: 50px;
-    color: red; /* Red text for Angi AI */
+    color: red;
     font-weight: bold;
 }
 .welcome-message {
@@ -24,19 +24,24 @@ body, .stApp {
     font-size: 18px;
     margin-top: 20px;
 }
+
+/* Increased specificity for text input */
 .stTextInput > div > div > input {
-    color: #333333 !important; /* Dark gray text */
-    border: 1px solid #CCCCCC; /* Light gray border */
+    color: #333333 !important; /* Force dark gray text */
+    border: 1px solid #CCCCCC;
     border-radius: 5px;
     padding: 10px;
-    background-color: white !important; /* White background */
+    background-color: white !important;
 }
+
 .stTextInput > label {
-    color: #333333 !important; /* Dark gray label */
+    color: #333333 !important;
 }
+
+/* Increased specificity for button */
 .stButton > button {
-    background-color: #EEEEEE; /* Light gray background */
-    color: #333333; /* Dark gray text */
+    background-color: #EEEEEE !important; /* Force light gray background */
+    color: #333333 !important; /* Force dark gray text */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -45,8 +50,9 @@ body, .stApp {
     margin: 20px auto;
 }
 .stButton > button:hover {
-    background-color: #DDDDDD; /* Slightly darker gray on hover */
+    background-color: #DDDDDD !important;
 }
+
 .stSpinner > div > div {
     border-color: #1976D2;
 }
