@@ -1,5 +1,6 @@
 import streamlit as st
-import time
+import pandas as pd
+from openai import OpenAI
 
 # Set the layout of the page to wide
 st.set_page_config(layout="wide")
@@ -24,24 +25,19 @@ body, .stApp {
     font-size: 18px;
     margin-top: 20px;
 }
-
-/* Increased specificity for text input */
 .stTextInput > div > div > input {
-    color: #333333 !important; /* Force dark gray text */
+    color: #333333;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     padding: 10px;
-    background-color: white !important;
+    background-color: white;
 }
-
 .stTextInput > label {
-    color: #333333 !important;
+    color: #333333;
 }
-
-/* Increased specificity for button */
 .stButton > button {
-    background-color: #EEEEEE !important; /* Force light gray background */
-    color: #333333 !important; /* Force dark gray text */
+    background-color: #EEEEEE;
+    color: #333333;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -50,9 +46,8 @@ body, .stApp {
     margin: 20px auto;
 }
 .stButton > button:hover {
-    background-color: #DDDDDD !important;
+    background-color: #DDDDDD;
 }
-
 .stSpinner > div > div {
     border-color: #1976D2;
 }
@@ -64,16 +59,24 @@ body, .stApp {
 </style>
 """, unsafe_allow_html=True)
 
-# Header (optional: add a logo here)
+# Header
 st.markdown('<div class="big-font">Angi AI</div>', unsafe_allow_html=True)
 
-# Welcome message and additional information
+# Welcome message
 st.markdown("""
 <div class="welcome-message">
-    Welcome to Angi AI! Primarily trained F_SP to help with your querying needs.<br>
-    For more information or context on this team, join the #ai-pilot-project-analytics Slack channel.
+    Welcome to Angi AI! Primarily trained to help with your querying needs.<br>
+    For more information, join the #ai-pilot-project-analytics Slack channel.
 </div>
 """, unsafe_allow_html=True)
+
+# Load your column definitions from CSV
+df = pd.read_csv('table_def.csv')
+columns_descriptions = '\n'.join([f"{row['Column of Interest']}: {row['Suggested Definition']}" for index, row in df.iterrows()])
+
+# API Key (Securely handled)
+api_key = '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'
+client = OpenAI(api_key=api_key)
 
 # Create a container for the text input and button
 with st.container():
@@ -83,9 +86,37 @@ with st.container():
             question = st.text_input("Ask me a question about F_SP", placeholder="Ask me a question about F_SP")
             submitted = st.form_submit_button("Submit")
         if submitted:
-            with st.spinner('Loading...'):
-                time.sleep(2)  # Simulate a loading time
-            st.error("We're still training Angi AI. Please try again in a few weeks.")
+            with st.spinner('Generating SQL query...'):
+                detailed_prompt = f"""
+                You are a Snowflake SQL generator. Given the following column descriptions, generate an SQL query based on the user's request. The table name is rpt.reports.f_sp.
 
-# Footer (optional: add copyright or contact information)
+                Column Descriptions:
+                {columns_descriptions}
+
+                User Query: {question}
+                """
+
+                response = client.responses.create(
+                      model="gpt-3.5-turbo",
+                      input=detailed_prompt,
+                      max_output_tokens=2048,
+                      temperature=0,
+                      top_p=1,
+                      store=True
+                )
+
+                # Process and display the response
+                if response.output and isinstance(response.output, list):
+                    for message in response.output:
+                        if message.role == 'assistant' and message.content:
+                            for content_piece in message.content:
+                                if content_piece.type == 'output_text' and len(content_piece.text.strip()) > 10:
+                                    sql_output = content_piece.text.strip()
+                                    st.success(sql_output)
+                                else:
+                                    st.error("We're still training Angi AI. Please try again in a few weeks.")
+                else:
+                    st.error("We're still training Angi AI. Please try again in a few weeks.")
+
+# Footer
 # st.markdown("<div style='text-align: center; margin-top: 50px; color: #777777;'>© 2024 Angi AI</div>", unsafe_allow_html=True)
