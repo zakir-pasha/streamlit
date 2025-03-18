@@ -1,0 +1,79 @@
+Column of Interest,Suggested Definition
+d_date,Date for the Service Provider (SP) record. Comprises composite key with SP_ID.
+sp_id,Service Provider (SP) ID number. Comprises composite key with d_date.
+sp_affiliate_id,"Affiliate tagged by entry point id or enrollment source, additional detail in rpt.reports.d_affiliate"
+affiliate_name,Plain Text Name of the affiliate associated to sp_affiliate_id
+gross_total,Total collections from this SP on this Day
+credits_total,"Total credits issues to this SP on this Day, offsetting Gross Lead Revenue"
+gross_lead_revenue,Revenue from leads before pulling out credits
+lead_credits,"Credits issued on leads, on  this day (not necessarily the same day as the lead)"
+membership_revenue,Revenue Collected to begin annual membership
+membership_credit,Credits issued against membership revenue
+afm_up_time,The amount of time that the SP was active for match (AFM); meaning the pro could recieve leads
+afm_down_time,The amount of time that the SP was not active for match (AFM); meaning the pro could recieve leads
+afm_rate,percentage of time that the sp was active for match
+afm_up_time_28,lagging 28 days of afm_up_time
+afm_down_time_28,lagging 28 days of afm_down_time
+afm_eod,yes/no field indicating if the SP was active for match at midnight mountain time
+status_code,"Current status code of SP, joinable to landing.wisen_data.ws_enrollment_code, MAIN codes only"
+sub_code,"Current sub status code of SP, joinable to landing.wisen_data.ws_enrollment_code, SUB codes only"
+from_status_code,Previous status_code field value
+from_sub_code,previous sub_code field value
+approved_up_time,
+approved_down_time,
+accept_type,"The SP's lead accept type, which determines which leads they can accept"
+total_reviews,Total numbers of reviews on the SP's profile as of the d_date
+tenure,"Number of days the SP has been approved, based on reactivation or Original Commissionable Date (available in rpt.reports.f_sp_sales)"
+avg_cost_per_lead,Average amount that the SP paid per lead
+desired_vol_leads,The amount of leads desired by the SP
+expected_lead_cnt,Count of expected leads the SP will receive on the given d_date
+usable_cap,
+total_accepts,Total lead accepts for the SP on the given d_date
+prev_sp_id,"The previous SP_ID associated with the service provider, if applicable"
+task_count,Count of tasks that the SP services
+zip_count,Count of zips that the SP services
+taskzip_count,Count of distinct task-zip combinations that the SP services
+one_cap_spend_target,
+one_cap_opt_fg,
+task_pl_category_name,The task category assigned to an SP at the point-in-time
+n_pl_tasks,The number of P&L tasks the SP Services
+task_group_name,The task group assigned to an SP at the point-in-time
+n_group_tasks,The number of group tasks assigned to an SP at the point-in-time
+task_cluster_name,The task cluster assigned to an SP at the point-in-time
+n_cluster_tasks,The number of cluster tasks assigned to an SP at the point-in-time
+most_recent_commissionable_date,The most recent instance of a sale or reactivation for the SP
+al_advertiser_fg,Y/N flag for whether the SP is an advertiser on Angi Ads
+period_start_date,"The SP's period start date, used for determining utilization in a period"
+day_in_period,The day of the SP's current period
+spend,Daily revenue associated with SPs that are in cap
+accrued_spend,Cumulative revenue in spend period associated with SPs that are in cap
+lead_tax_amount,Daily spend for tax transactions that are tied to in-cap leads
+accrued_lead_tax_amount,Cumulative spend for tax transactions that are tied to in-cap leads
+raw_spend_target,"The SP's raw spend target on the given day. If an SP changes their spend target mid-period, this will change accordingly"
+utilization_spend_target,"The SP's prorated spend target. If an SP changes their spend target mid-period, this will not change until the next period"
+out_of_cap_spend,Daily revenue associated with SPs that are not in cap
+accrued_out_of_cap_spend,Cumulative revenue in spend period associated with SPs that are not in cap
+max_discount_value,
+max_discount_type,
+recent_accept_datetime,The most recent preceding date in which the SP had at least 1 accept
+l28_gross_lead_revenue,The sum of gross lead revenue for the SP in the last 28 days
+utilization_target,Utilization target for SP on day grain
+utilization_limit,Utilization Limit for SP on daily grain
+large_pro_daily_flag,indicates large pros - spbd affiliate pros with more than 100K rev in L365
+large_pro_quarterly_flag,indicates large pros - spbd affiliate pros with more than 100K rev in L365 from start of quarter
+transacting_sp,Indicates the SP has at least one non-free lead in the trailing 3 months
+reasonable_capacity_eligible_flag,"A 1/0 field indicating if the SP is eligible to have reasonable capacity on a given day; an SP must be approved, premier pro, and traditional in order to be eligible"
+has_company_overview_fg,Flag indicating if the SP profile has completed Company overview; Data available after 07/12/2023
+has_expertise_fg,Flag indicating if the Detail_type is Expertise in profile detail; Data available after 07/12/2023
+has_quick_facts_fg,"Flag indicating if the SP has answered either of these question Ids 6039, 6005, 6040, 6002; Data available after 07/12/2023"
+has_business_address_fg,Flag indicating if the SP has business address available in the profile; Data available after 07/12/2023
+has_business_hours_fg,Flag indicating if the SP has business hours listed in the profile ; Data available after 07/12/2023
+work_photo_fg,Flag indicating if the SP has work photos in their profile; Data available after 07/12/2023
+logo_fg,Flag indicating if the SP has a logo in their profile; Data available after 07/12/2023
+has_three_reviews_fg,Flag indicating if the SP has recieved three reviews in their profile; Data available after 07/12/2023
+count_targeted_sections_complete,Number of profile completion flags that are Y; Data available after 07/12/2023
+all_targeted_sections_complete_fg,Flag indicating if all columns associated with profile completion are Y; Data available after 07/12/2023
+day_before_status_code,SPs status code on the day before a given date
+day_before_sub_code,SPs sub status code on the day before a given date
+day_before_accept_type,SPs accept type on the day before a given date
+most_recent_review_date,Date that the most recent review happened for the SP prior to the D_DATE
