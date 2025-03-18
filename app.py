@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from openai import OpenAI
 
+
+
 # Set the layout of the page to wide
 st.set_page_config(layout="wide")
 
@@ -75,7 +77,7 @@ df = pd.read_csv('table_def.csv')
 columns_descriptions = '\n'.join([f"{row['Column of Interest']}: {row['Suggested Definition']}" for index, row in df.iterrows()])
 
 # API Key (Securely handled)
-api_key = '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'
+api_key = st.secrets["openai_secret_key"]
 client = OpenAI(api_key=api_key)
 
 # Create a container for the text input and button
