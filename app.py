@@ -4,62 +4,57 @@ import time
 # Set the layout of the page to wide
 st.set_page_config(layout="wide")
 
-# Define color palette (adjust to your preference)
-primary_color = "#1976D2"  # A professional blue
-background_color = "#f0fcf4"  # Light minty green background
-text_color = "#333333"  # Dark gray text
-angi_ai_color = "red"  # Angi AI text color
-
 # Custom CSS for styling
-st.markdown(f"""
+st.markdown("""
 <style>
-body, .stApp {{
-    background-color: {background_color};
-    color: {text_color};
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}}
-.big-font {{
+body, .stApp {
+    background-color: #f0fcf4; /* Light minty green background */
+    color: #333333; /* Dark gray text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+}
+.big-font {
     font-size: 50px !important;
     text-align: center;
     margin-top: 50px;
-    color: {angi_ai_color};
+    color: red; /* Red text for Angi AI */
     font-weight: bold;
-}}
-.welcome-message {{
+}
+.welcome-message {
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
-}}
-.stTextInput > div > div > input {{
-    color: {text_color} !important;
-    border: 1px solid #CCCCCC;
+}
+.stTextInput > div > div > input {
+    color: #333333 !important; /* Dark gray text */
+    border: 1px solid #CCCCCC; /* Light gray border */
     border-radius: 5px;
     padding: 10px;
-}}
-.stTextInput > label {{
-    color: {text_color} !important;
-}}
-.stButton > button {{
-    background-color: {primary_color};
-    color: white;
+    background-color: white !important; /* White background */
+}
+.stTextInput > label {
+    color: #333333 !important; /* Dark gray label */
+}
+.stButton > button {
+    background-color: #EEEEEE; /* Light gray background */
+    color: #333333; /* Dark gray text */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     display: block;
     margin: 20px auto;
-}}
-.stButton > button:hover {{
-    background-color: #1565C0;
-}}
-.stSpinner > div > div {{
-    border-color: {primary_color};
-}}
-.stError {{
-    color: #D32F2F;  # A professional red for errors
+}
+.stButton > button:hover {
+    background-color: #DDDDDD; /* Slightly darker gray on hover */
+}
+.stSpinner > div > div {
+    border-color: #1976D2;
+}
+.stError {
+    color: #D32F2F;
     text-align: center;
     margin-top: 20px;
-}}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -67,7 +62,7 @@ body, .stApp {{
 st.markdown('<div class="big-font">Angi AI</div>', unsafe_allow_html=True)
 
 # Welcome message and additional information
-st.markdown(f"""
+st.markdown("""
 <div class="welcome-message">
     Welcome to Angi AI! Primarily trained F_SP to help with your querying needs.<br>
     For more information or context on this team, join the #ai-pilot-project-analytics Slack channel.
